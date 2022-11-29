@@ -1,0 +1,21 @@
+Method 1:Find the element that appears once in sorted array
+
+
+class Solution 
+{
+    int findOnce(int arr[], int n)
+    {
+        // Complete this function
+        HashMap<Integer,Integer> hm=new HashMap<>();
+        for(int x: arr){
+            hm.put(x,hm.getOrDefault(x,0)+1);
+        }
+        
+        for(int i:hm.keySet()){
+            if(hm.get(i)==1){
+                return i;
+            }
+        }
+        return -1;
+    }
+}
