@@ -1,0 +1,41 @@
+Method 01:Check if two strings are k-anagrams or not
+
+
+class Solution {
+    boolean areKAnagrams(String s1, String s2, int k) {
+        // code here
+        
+        char ar1[]=s1.toCharArray();
+        char ar2[]=s2.toCharArray();
+        Arrays.sort(ar1);
+        Arrays.sort(ar2);
+        int count=0;
+        
+        if(s1.length()!=s2.length()){
+            return false;
+        }
+        
+        HashMap<Character,Integer> hm1=new HashMap<>();
+            for(int i=0;i<s1.length();i++){
+            char ch=s1.charAt(i);
+            hm1.put(ch,hm1.getOrDefault(ch,0)+1);
+        }
+        
+        for(int i=0;i<s2.length();i++){
+            char ch=s2.charAt(i);
+            if(hm1.getOrDefault(ch,0)>0){
+                hm1.put(ch,hm1.getOrDefault(ch,0)-1);
+            }
+            else{
+                count++;
+            }
+        }
+        
+        if(count<=k){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+}
