@@ -1,0 +1,38 @@
+Method 01: Longest K unique characters substring
+
+
+class Solution {
+    public int longestkSubstr(String s, int k) {
+        // code here
+          int ans=-1,count=0;
+        int i=0,j=0;
+        HashMap<Character,Integer> map=new HashMap<Character,Integer>();
+        while(j<s.length()){
+            map.put(s.charAt(j), map.getOrDefault(s.charAt(j), 0)+1);
+            count++;
+               if(map.size()==k)
+               {
+                   ans=Math.max(count,ans);
+               }
+                else if(i<j&&map.size()>k)
+                {
+                    while(map.size()!=k)
+                    {
+                        char ch=s.charAt(i);
+                        if(map.get(ch)==1)
+                        {
+                           map.remove(ch);
+                        }
+                        else
+                        {
+                            map.put(ch,map.get(ch)-1);
+                        }
+                        count--;
+                        i++;
+                    }
+                }
+                j++;
+        }
+        return ans;
+    }
+}
