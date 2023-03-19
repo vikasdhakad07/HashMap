@@ -1,0 +1,33 @@
+Method 01: Subarrays with K Different Integers
+
+
+class Solution {
+    static int subarrayCount(int arr[], int N, int k) {
+    // code here
+    return solve(arr, N, k)-solve(arr, N ,k-1);
+  }
+  
+  static int solve(int arr[], int n, int k){
+      int ans=0;
+      int i=0;
+      HashMap<Integer, Integer> map=new HashMap<>();
+      for(int j=0;j<n;j++){
+          map.put(arr[j], map.getOrDefault(arr[j],0)+1);
+          
+          while(map.size()>k){
+              int cnt=map.get(arr[i]);
+              cnt--;
+              if(cnt==0){
+                  map.remove(arr[i]);
+              }
+              else{
+                  map.put(arr[i], map.get(arr[i])-1);
+              }
+              i++;
+          }
+          ans+=j-i+1;
+      }
+      return ans;
+  }
+}
+  
