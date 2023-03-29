@@ -1,0 +1,32 @@
+Method 01: Count the Substrings
+
+
+class Solution 
+{ 
+    int countSubstring(String S) 
+    { 
+        // code here
+        int n=S.length();
+        int sum=0;
+        int ans=0;
+        HashMap<Integer, Integer> hm=new HashMap<>();
+        hm.put(0, 1);
+        for(char ch:S.toCharArray()){
+            int val=0;
+            if(Character.isUpperCase(ch)){
+                val=1;
+            }
+            else{
+                val=-1;
+            }
+            
+            sum=sum+val;
+            
+            if(hm.containsKey(sum)){
+                ans+=hm.get(sum);
+            }
+            hm.put(sum, hm.getOrDefault(sum, 0)+1);
+        }
+        return ans;
+    }
+} 
