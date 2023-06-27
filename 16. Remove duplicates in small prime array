@@ -1,0 +1,17 @@
+Method 01: Remove duplicates in small prime array
+
+
+class Solution
+{
+    ArrayList<Integer> removeDuplicate(int arr[], int n)
+    {
+        // code here 
+       
+        LinkedHashSet<Integer> hs=new LinkedHashSet<>();
+        for(int i=0;i<n;i++){
+            hs.add(arr[i]);
+        }
+         ArrayList<Integer> al=new ArrayList<>(hs);
+         return al;
+    }
+}
